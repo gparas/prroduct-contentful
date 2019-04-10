@@ -1,15 +1,49 @@
-import React from 'react'
-import Img from 'gatsby-image'
+import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Img from 'gatsby-image';
 
-import styles from './hero.module.css'
+const styles = theme => ({
+  hero: {
+    position: 'relative',
+    color: theme.palette.common.white,
+    backgroundColor: theme.palette.background.paper,
+  },
+  heroContent: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    maxWidth: 600,
+    padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
+  },
+});
 
-export default ({ data }) => (
-  <div className={styles.hero}>
-    <Img className={styles.heroImage} alt={data.name} fluid={data.heroImage.fluid} />
-    <div className={styles.heroDetails}>
-      <h3 className={styles.heroHeadline}>{data.name}</h3>
-      <p className={styles.heroTitle}>{data.title}</p>
-      <p>{data.shortBio.shortBio}</p>
+const Hero = ({ data, classes }) => (
+  <div className={classes.hero}>
+    <Img
+      className={styles.heroImage}
+      alt={data.name}
+      fluid={data.heroImage.fluid}
+    />
+    <div className={classes.heroContent}>
+      <Typography
+        component="h1"
+        variant="h2"
+        align="center"
+        color="inherit"
+        gutterBottom
+      >
+        {data.name}
+      </Typography>
+      <Typography variant="h6" align="center" color="inherit" paragraph>
+        {data.title}
+      </Typography>
+      <Typography align="center" color="inherit" paragraph>
+        {data.shortBio.shortBio}
+      </Typography>
     </div>
   </div>
-)
+);
+
+export default withStyles(styles)(Hero);
