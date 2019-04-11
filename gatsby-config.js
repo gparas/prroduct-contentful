@@ -32,7 +32,7 @@ module.exports = {
     'gatsby-plugin-sharp',
     {
       resolve: 'gatsby-source-contentful',
-      options: contentfulConfig,
+      options: {...contentfulConfig, downloadLocal: true,},
     },
     {
       resolve: `gatsby-plugin-prefetch-google-fonts`,
